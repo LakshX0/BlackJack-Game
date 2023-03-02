@@ -29,7 +29,7 @@ function getRandomCard() {
 }
 
 function startGame() {
-    isAlive = false
+    isAlive = true
     let firstCard = getRandomCard()
     let secondCard = getRandomCard()
     cards = [firstCard, secondCard]
