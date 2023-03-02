@@ -1,18 +1,49 @@
-// 1. Create two variables, firstCard and secondCard.
+let firstCard = randomCard()
+let secondCard = randomCard()
+let cards = [firstCard, secondCard]
+let sum = firstCard + secondCard
+let hasBlackJack = false
+let isAlive = true
+let message = ""
+let messageEl = document.getElementById("message-el")
+let sumEl = document.getElementById("sum-el")
+let cardsEl = document.getElementById("cards-el")
 
-// Set their values to a random number between 2-11
+function randomCard() {
 
-// 2. Create a variable, sum, and set it to the sum of the two cards
+    return Math.floor(Math.random() *13) + 1
+}
 
-let firstCard = 10
-let secondCard = 3
+function startGame() {
+    renderGame()
+}
 
-let sum = firstCard + secondCard +10
+function renderGame() {
+    cardsEl.textContent = "Cards: "
+    // Create a for loop that renders out all the cards instead of just two
+    for (let i = 0; i < cards.length; i++) {
+        cardsEl.textContent += cards[i] + " "
+    }
+    
+    sumEl.textContent = "Sum: " + sum
+    if (sum <= 20) {
+        message = "Do you want to draw a new card?"
+    } else if (sum === 21) {
+        message = "You've got Blackjack!"
+        hasBlackJack = true
+    } else {
+        message = "You're out of the game!"
+        isAlive = false
+    }
+    messageEl.textContent = message
+}
 
-if (sum < 21) {
-    console.log("Do you want to add another card😀")
-} else if(sum === 21) {
-    console.log("Wohooo! you win BLACKJACK!!! 🥳")
-} else {
-    console.log("You're out of the game 😥")
+
+function newCard() {
+    let card = randomCard()
+    sum += card
+    // Push the card to the cards array
+    cards.push(card)
+    console.log(cards)
+    renderGame()
 }
